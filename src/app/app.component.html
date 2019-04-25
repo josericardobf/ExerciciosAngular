@@ -1,3 +1,28 @@
-<h1>
-  {{title}}
-</h1>
+<ul>
+  <li *ngFor="let nome of nomes, let i = index">
+    Nome da pessoa é: {{nome}}, está na posição {{i + 1}}
+  </li>
+</ul>
+
+<p *ngIf="nomes.length == 0">Nenhum nome encontrado, usando *ngIf</p>
+
+<p [hidden]="nomes.length > 0">Nenhum nome encontrado, usando hidden</p>
+
+<input #box placeholder="digite um nome" (keyup)="buscar(box.value)"/>
+
+<ul>
+  <li *ngFor="let nomeFiltro of nomesFiltro">
+    {{nomeFiltro}}
+  </li>
+</ul>
+
+<p>Salario total:{{ getValorTotal() }}</p>
+
+<input #parametroid placeholder="Digite um id"/>
+<button (click)="retorno = buscarId(parametroid.value)">Buscar id</button>
+<p *ngIf="retorno != undefined">{{ retorno.id }} - {{ retorno.nome }} - {{ retorno.salario }}</p>
+
+<br><br>
+
+<input #percentual placeholder="Digite o percentual"/>
+<button (click)="aumentarSalario(percentual.value)">Aumentar salario</button>
